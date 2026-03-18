@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HermanScience – AI Workforce Risk Homepage Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#02AAEE;
+      --primary-dark:#008dc6;
+      --text:#595959;
+      --heading:#2f3d4c;
+      --bg:#f7fbfe;
+      --surface:#ffffff;
+      --surface-2:#eef8fd;
+      --line:#d7e9f3;
+      --shadow:0 14px 40px rgba(20,67,96,.10);
+      --radius:22px;
+      --radius-sm:16px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(2,170,238,.09), transparent 30%),
+        radial-gradient(circle at top right, rgba(2,170,238,.08), transparent 28%),
+        linear-gradient(180deg,#fff 0%, var(--bg) 100%);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .container{width:min(calc(100% - 40px), var(--max)); margin:0 auto}
+    .section{padding:88px 0}
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:.82rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+      color:var(--primary);
+      margin-bottom:18px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:28px; height:2px; background:var(--primary); border-radius:999px;
+    }
+    h1,h2,h3,h4{
+      margin:0 0 16px;
+      color:var(--heading);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+    h1{font-size:clamp(2.6rem, 5vw, 4.5rem); font-weight:800; max-width:11ch}
+    h2{font-size:clamp(2rem, 4vw, 3rem); font-weight:800; max-width:14ch}
+    h3{font-size:1.25rem; font-weight:700}
+    p{margin:0 0 14px; max-width:64ch}
+    .lead{font-size:1.15rem; max-width:54ch}
+    .muted{color:#73808c}
+    .center{text-align:center}
+    .center p{margin-inline:auto}
+
+    .btns{display:flex; flex-wrap:wrap; gap:14px; margin:26px 0 18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:52px; padding:0 24px; border-radius:999px; font-weight:700;
+      transition:.2s ease; border:1px solid transparent;
+    }
+    .btn.primary{
+      background:var(--primary); color:#fff; box-shadow:0 12px 24px rgba(2,170,238,.25);
+    }
+    .btn.primary:hover{background:var(--primary-dark); transform:translateY(-1px)}
+    .btn.secondary{
+      background:#fff; color:var(--heading); border-color:var(--line);
+    }
+    .btn.secondary:hover{border-color:var(--primary); color:var(--primary)}
+
+    .nav-wrap{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(18px);
+      background:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(215,233,243,.72);
+      box-shadow:0 8px 28px rgba(18,40,64,.05);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:84px; gap:28px;
+    }
+    .brand{
+      display:flex; flex-direction:column; align-items:flex-start; gap:4px; font-weight:800; color:var(--heading);
+      flex:0 0 auto;
+    }
+    .logo{
+      height:44px;
+      margin-bottom:2px;
+      width:auto;
+      object-fit:contain;
+      display:block;
+    }
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-width:0;
+    }
+    .brand-text .tagline{
+      font-size:.74rem;
+      color:#6f8494;
+      font-weight:700;
+      letter-spacing:.03em;
+      line-height:1.1;
+      white-space:nowrap;
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:10px; flex-wrap:nowrap;
+      font-size:.93rem; font-weight:700; color:#5f6d79;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(215,233,243,.92);
+      border-radius:999px;
+      padding:8px;
+      box-shadow:0 8px 22px rgba(20,67,96,.05);
+    }
+    .nav-links a{
+      padding:10px 14px; white-space:nowrap;
+      border-radius:999px;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{
+      color:var(--primary);
+      background:rgba(2,170,238,.08);
+    }
+    .nav-cta{
+      white-space:nowrap;
+      min-height:48px;
+      padding:0 20px;
+      box-shadow:0 10px 24px rgba(2,170,238,.22);
+    }
+
+    .hero{
+      padding:68px 0 52px;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.05fr .95fr; gap:42px; align-items:center;
+    }
+    .hero-copy .lead strong{color:var(--heading)}
+    .micro-proof{margin-top:18px; font-size:.92rem; color:#6d7b87; font-weight:600}
+    .logo-row{
+      display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:22px;
+    }
+    .logo-pill{
+      min-height:54px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.75);
+      display:grid; place-items:center; font-weight:700; color:#8a96a2; letter-spacing:.04em;
+      padding:0 18px;
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:590px;
+      border-radius:32px;
+      background:
+        linear-gradient(160deg, rgba(2,170,238,.08), rgba(255,255,255,.92) 36%),
+        linear-gradient(180deg, #ffffff, #f0f9fe);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:28px;
+    }
+    .data-flow{
+      position:absolute; inset:0; pointer-events:none; overflow:hidden;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(2,170,238,.18), transparent 18%),
+        radial-gradient(circle at 82% 30%, rgba(2,170,238,.12), transparent 16%),
+        radial-gradient(circle at 70% 82%, rgba(2,170,238,.10), transparent 18%);
+    }
+    .flow-line{
+      position:absolute; height:2px; background:linear-gradient(90deg, transparent, rgba(2,170,238,.65), transparent);
+      width:220px; animation:floatX 8s linear infinite;
+      opacity:.75;
+    }
+    .flow-line:nth-child(1){top:18%; left:-10%; animation-delay:0s}
+    .flow-line:nth-child(2){top:45%; left:12%; width:270px; animation-delay:2s}
+    .flow-line:nth-child(3){top:75%; left:-20%; width:300px; animation-delay:4s}
+    @keyframes floatX{
+      from{transform:translateX(0)}
+      to{transform:translateX(520px)}
+    }
+
+    .hero-panels{
+      position:relative; z-index:1;
+      display:grid; grid-template-columns:1fr 1fr; gap:18px; height:100%;
+    }
+    .brain-card,.user-card,.metric-card,.signal-card{
+      border-radius:26px; border:1px solid var(--line); background:rgba(255,255,255,.82);
+      box-shadow:0 8px 26px rgba(27,85,116,.08);
+      backdrop-filter: blur(6px);
+    }
+    .brain-card{padding:24px; min-height:280px; display:flex; flex-direction:column; justify-content:space-between}
+    .user-card{padding:20px; min-height:280px; position:relative}
+    .metric-card,.signal-card{padding:16px}
+    .hero-bottom{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:18px; margin-top:18px;
+    }
+
+    .brain-svg{width:100%; max-width:280px; margin:0 auto}
+    .card-label{font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:8px}
+    .chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .chip{
+      padding:8px 12px; border-radius:999px; background:var(--surface-2);
+      color:#4d6f82; font-size:.82rem; font-weight:700;
+    }
+    .employee-ui{
+      height:180px; border-radius:20px; background:linear-gradient(180deg,#edf8fe,#fff);
+      border:1px solid var(--line); padding:14px; display:flex; flex-direction:column; gap:10px;
+    }
+    .employee-ui .bar{height:10px; border-radius:999px; background:#dcedf7}
+    .employee-ui .pane{flex:1; display:grid; grid-template-columns:1fr .8fr; gap:10px}
+    .employee-ui .pane > div{
+      border-radius:16px; background:#fff; border:1px solid var(--line);
+    }
+    .avatar{
+      position:absolute; right:18px; bottom:18px;
+      width:88px; height:88px; border-radius:22px; background:linear-gradient(135deg, #d7f4ff, #8bdcff);
+      border:1px solid rgba(2,170,238,.18);
+    }
+
+    .metric-grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+    }
+    .metric{
+      padding:14px; border-radius:18px; background:#fff; border:1px solid var(--line);
+    }
+    .metric b{display:block; font-size:1.25rem; color:var(--heading)}
+    .mini-bars{display:grid; gap:10px}
+    .mini-bars div{
+      height:12px; border-radius:999px; background:linear-gradient(90deg, rgba(2,170,238,.75), rgba(2,170,238,.18));
+    }
+
+    .problem-grid,
+    .gap-grid,
+    .solution-grid,
+    .offer-grid,
+    .diff-grid,
+    .final-cta{
+      display:grid; gap:32px; align-items:center;
+    }
+    .problem-grid{grid-template-columns:1fr .95fr}
+    .gap-grid{grid-template-columns:.92fr 1.08fr}
+    .solution-grid{grid-template-columns:1fr 1fr}
+    .offer-grid{grid-template-columns:.95fr 1.05fr}
+    .diff-grid{grid-template-columns:1fr 1fr}
+    .final-cta{grid-template-columns:1.08fr .92fr}
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .pad{padding:28px}
+    .bullets{display:grid; gap:12px; margin-top:20px}
+    .bullet{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px 16px; border-radius:18px;
+      background:linear-gradient(180deg,#fff,#f9fdff);
+      border:1px solid var(--line);
+    }
+    .bullet-dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--primary); margin-top:.45rem; flex:0 0 auto;
+      box-shadow:0 0 0 5px rgba(2,170,238,.12);
+    }
+
+    .failure-loop{
+      padding:26px; min-height:360px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(2,170,238,.12), transparent 45%),
+        linear-gradient(180deg,#ffffff,#f7fcff);
+      display:grid; place-items:center;
+      position:relative;
+    }
+    .loop{
+      position:relative; width:min(100%, 440px); aspect-ratio:1/1;
+    }
+    .node{
+      position:absolute; width:118px; min-height:74px; border-radius:22px;
+      display:grid; place-items:center; text-align:center;
+      padding:10px; font-weight:700; color:var(--heading);
+      background:#fff; border:1px solid var(--line); box-shadow:0 8px 18px rgba(25,76,105,.08);
+    }
+    .node:nth-child(1){top:6%; left:50%; transform:translateX(-50%)}
+    .node:nth-child(2){top:50%; right:2%; transform:translateY(-50%)}
+    .node:nth-child(3){bottom:6%; left:50%; transform:translateX(-50%)}
+    .node:nth-child(4){top:50%; left:2%; transform:translateY(-50%)}
+    .node.center{top:50%; left:50%; transform:translate(-50%,-50%); width:132px; min-height:132px; border-radius:50%; background:linear-gradient(135deg,#dff5ff,#fff)}
+    .ring{
+      position:absolute; inset:58px; border:2px dashed rgba(2,170,238,.38); border-radius:50%;
+      animation:spin 18s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .trap-card{
+      padding:30px;
+      background:linear-gradient(135deg, #ffffff 0%, #f3fbff 100%);
+    }
+    .compare{
+      display:grid; grid-template-columns:1fr 42px 1fr; gap:18px; align-items:center;
+      margin-top:20px;
+    }
+    .compare-col{
+      padding:22px; border-radius:22px; border:1px solid var(--line); background:#fff;
+    }
+    .compare-col h3{margin-bottom:14px}
+    .vs{
+      width:42px; height:42px; border-radius:50%; display:grid; place-items:center;
+      font-size:.8rem; font-weight:800; color:var(--primary);
+      border:1px solid var(--line); background:#fff;
+    }
+
+    .dashboard{
+      padding:24px;
+      background:linear-gradient(180deg,#ffffff,#f4fbff);
+    }
+    .dash-top{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px;
+    }
+    .score{
+      padding:16px; border:1px solid var(--line); border-radius:18px; background:#fff;
+    }
+    .score .label{font-size:.8rem; font-weight:700; color:#7090a2; text-transform:uppercase; letter-spacing:.07em}
+    .score .value{font-size:1.75rem; font-weight:800; color:var(--heading); margin-top:4px}
+    .risk-band{
+      margin-top:10px; height:10px; border-radius:999px;
+      background:linear-gradient(90deg,#5ccf95 0 32%, #ffd15b 32% 66%, #ff8c8c 66% 100%);
+    }
+    .dash-panels{
+      display:grid; grid-template-columns:1.2fr .8fr; gap:14px;
+    }
+    .chart, .insights{
+      padding:18px; border-radius:20px; border:1px solid var(--line); background:#fff;
+    }
+    .radar{
+      width:100%; aspect-ratio:1.2/1;
+      background:
+        radial-gradient(circle at center, rgba(2,170,238,.06) 0 18%, transparent 18% 100%),
+        linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:18px; position:relative; overflow:hidden;
+    }
+    .radar svg{position:absolute; inset:0}
+    .insights ul{padding-left:18px; margin:8px 0 0}
+
+    .steps{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px;
+    }
+    .step{
+      padding:26px 22px; border-radius:22px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow);
+    }
+    .step-number{
+      width:44px; height:44px; border-radius:14px; display:grid; place-items:center;
+      background:rgba(2,170,238,.1); color:var(--primary); font-weight:800; margin-bottom:18px;
+    }
+
+    .offer-visual{
+      padding:24px;
+      display:grid; gap:14px;
+      background:linear-gradient(160deg,#ffffff,#f3fbff);
+    }
+    .offer-card{
+      padding:18px; border-radius:20px; border:1px solid var(--line); background:#fff;
+      display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center;
+    }
+    .offer-pill{
+      padding:9px 14px; border-radius:999px; background:var(--surface-2);
+      color:#4c7082; font-weight:700; font-size:.82rem;
+    }
+
+    .stats{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:30px;
+    }
+    .stat{
+      padding:28px 22px; border-radius:24px; border:1px solid var(--line);
+      background:linear-gradient(180deg,#fff,#f7fcff);
+      box-shadow:var(--shadow);
+      position:relative; overflow:hidden;
+    }
+    .stat::after{
+      content:""; position:absolute; right:-30px; top:-30px; width:120px; height:120px; border-radius:50%;
+      background:radial-gradient(circle, rgba(2,170,238,.13), transparent 65%);
+    }
+    .stat .num{font-size:2.4rem; font-weight:800; color:var(--heading)}
+    .stat .caption{font-weight:700; color:#6f7b87}
+
+    .compare-grid{
+      display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:16px;
+    }
+    .compare-box{
+      padding:26px; border-radius:24px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow);
+    }
+    .compare-box.highlight{
+      background:linear-gradient(180deg,#f3fbff,#fff);
+      border-color:#bfe9fa;
+    }
+    .compare-box ul{padding-left:18px; margin:14px 0 0}
+
+    .cta-card{
+      padding:34px;
+      border-radius:30px;
+      background:
+        radial-gradient(circle at top right, rgba(2,170,238,.14), transparent 28%),
+        linear-gradient(135deg,#ffffff,#f2fbff);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .cta-visual{
+      min-height:320px; display:grid; place-items:center;
+      background:linear-gradient(160deg,#fff,#f1fbff);
+      border-radius:30px; border:1px solid var(--line); box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .shield{
+      width:min(100%, 360px); aspect-ratio:1/1; position:relative;
+      display:grid; place-items:center;
+    }
+    .shield::before{
+      content:""; position:absolute; inset:8%; border-radius:30% 30% 42% 42% / 22% 22% 58% 58%;
+      background:linear-gradient(180deg, rgba(2,170,238,.15), rgba(2,170,238,.05));
+      border:1px solid rgba(2,170,238,.25);
+    }
+    .shield::after{
+      content:"AI READY"; position:absolute;
+      font-size:1.15rem; font-weight:800; letter-spacing:.08em; color:var(--heading);
+    }
+    .orbit{
+      position:absolute; inset:0; border:2px dashed rgba(2,170,238,.32); border-radius:50%;
+      animation:spin 24s linear infinite reverse;
+    }
+    .orbit:nth-child(2){inset:14%; animation-duration:18s}
+    .orbit:nth-child(3){inset:28%; animation-duration:12s}
+
+    footer{
+      padding:54px 0 34px; border-top:1px solid var(--line); background:#fff;
+    }
+    .footer-grid{
+      display:grid; grid-template-columns:1.2fr .8fr .8fr .9fr; gap:24px;
+    }
+    .footer-title{font-weight:800; color:var(--heading); margin-bottom:12px}
+    .footer-links{display:grid; gap:10px}
+    .trust-badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .trust-badge{
+      padding:9px 12px; border:1px solid var(--line); border-radius:999px; font-weight:700; font-size:.82rem; color:#6c7b88;
+    }
+    .copyright{
+      margin-top:26px; padding-top:18px; border-top:1px solid var(--line); font-size:.9rem; color:#81909b;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .problem-grid,
+      .gap-grid,
+      .solution-grid,
+      .offer-grid,
+      .diff-grid,
+      .final-cta,
+      .footer-grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .brand-text .tagline{white-space:normal}
+      h1{max-width:14ch}
+    }
+
+    @media (max-width: 760px){
+      .section{padding:70px 0}
+      .hero{padding-top:44px}
+      .hero-visual{min-height:auto}
+      .hero-panels,
+      .hero-bottom,
+      .compare,
+      .dash-top,
+      .dash-panels,
+      .metric-grid,
+      .compare-grid,
+      .stats,
+      .logo-row{grid-template-columns:1fr}
+      .btns{flex-direction:column; align-items:stretch}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container nav">
+      <a class="brand" href="#">
+        <img src="assets/logo.png" alt="HermanScience Logo" class="logo">
+        <div class="brand-text">
+          <div class="tagline">Neuroscience for the AI Age</div>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#problem">Why AI fails</a>
+        <a href="#solution">Platform</a>
+        <a href="#how">How it works</a>
+        <a href="#proof">Outcomes</a>
+        <a href="#contact">Resources</a>
+      </nav>
+      <a class="btn primary nav-cta" href="#final-cta">Start Free Assessment</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Human Risk Intelligence for AI</div>
+        <h1>We measure and fix the human risks that cause most AI projects to fail.</h1>
+        <p class="lead"><strong>AI can amplify your employees.</strong><br>It can also amplify their weaknesses.</p>
+        <div class="btns">
+          <a class="btn primary" href="#final-cta">Take the 5-Minute AI Workforce Risk Assessment</a>
+          <a class="btn secondary" href="#solution">See How It Works →</a>
+        </div>
+        <div class="micro-proof">Trusted by forward-thinking teams to improve AI productivity and reduce human risk</div>
+        <div class="logo-row" aria-label="Customer logo placeholders">
+          <div class="logo-pill">ENTERPRISE</div>
+          <div class="logo-pill">FINANCE</div>
+          <div class="logo-pill">HEALTH</div>
+          <div class="logo-pill">TECH</div>
+          <div class="logo-pill">PUBLIC</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="data-flow">
+          <div class="flow-line"></div>
+          <div class="flow-line"></div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="hero-panels">
+          <div class="brain-card">
+            <div>
+              <div class="card-label">Neural + human signals</div>
+              <svg class="brain-svg" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Brain illustration">
+                <path d="M112 43c-24 0-44 20-44 44 0 6 1 13 4 19-17 8-28 25-28 45 0 28 22 50 50 50 11 0 21-3 29-9 8 10 20 16 34 16 19 0 35-11 43-27 4 1 9 2 14 2 29 0 52-23 52-52 0-20-11-37-28-46 3-6 4-12 4-18 0-24-20-44-44-44-10 0-20 3-27 9-10-12-25-20-41-20-16 0-31 8-41 20-7-6-16-9-27-9Z" stroke="#02AAEE" stroke-width="3"/>
+                <path d="M123 57c-10 7-16 19-16 31M92 110c14 5 22 18 22 33M160 42v145M198 57c10 7 16 19 16 31M228 110c-14 5-22 18-22 33M119 101h82M119 147h82" stroke="#7ad8ff" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="119" cy="101" r="6" fill="#02AAEE"/>
+                <circle cx="201" cy="101" r="6" fill="#02AAEE"/>
+                <circle cx="160" cy="147" r="6" fill="#02AAEE"/>
+                <circle cx="160" cy="77" r="8" fill="#dff7ff"/>
+              </svg>
+            </div>
+            <div class="chip-row">
+              <div class="chip">Trust</div>
+              <div class="chip">Stress</div>
+              <div class="chip">Decision quality</div>
+            </div>
+          </div>
+
+          <div class="user-card">
+            <div class="card-label">Employee + AI interaction</div>
+            <div class="employee-ui">
+              <div class="bar" style="width:78%"></div>
+              <div class="bar" style="width:52%"></div>
+              <div class="pane">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <div class="chip-row">
+              <div class="chip">Prompting</div>
+              <div class="chip">Editing</div>
+              <div class="chip">Judgment</div>
+            </div>
+            <div class="avatar" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="metric-card">
+            <div class="card-label">Live risk signals</div>
+            <div class="metric-grid">
+              <div class="metric"><span class="muted">Trust</span><b>72</b></div>
+              <div class="metric"><span class="muted">Stress</span><b>41</b></div>
+              <div class="metric"><span class="muted">Risk</span><b>Yellow</b></div>
+            </div>
+          </div>
+          <div class="signal-card">
+            <div class="card-label">Data flow</div>
+            <div class="mini-bars">
+              <div style="width:92%"></div>
+              <div style="width:66%"></div>
+              <div style="width:80%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problem" class="section">
+    <div class="container problem-grid">
+      <div>
+        <div class="eyebrow">The problem</div>
+        <h2>AI isn’t failing because of technology.</h2>
+        <p class="lead">It’s failing because workers are ready to use it.</p>
+        <div class="bullets">
+          <div class="bullet"><span class="bullet-dot"></span><div>Overtrust leads to bad decisions.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Stress leads to shortcuts and mistakes.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Bad prompting leads to weak outputs and writing.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Untrained teams create security and compliance risks.</div></div>
+        </div>
+      </div>
+      <div class="card failure-loop">
+        <div class="loop">
+          <div class="ring"></div>
+          <div class="node">AI</div>
+          <div class="node">Misuse</div>
+          <div class="node">Risk</div>
+          <div class="node">Failure</div>
+          <div class="node center">Human</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container gap-grid">
+      <div class="card trap-card">
+        <div class="eyebrow">The AI productivity trap</div>
+        <h2>The AI Human Productivity Gap</h2>
+        <p>You deploy AI. You reduce headcount. You expect productivity gains.</p>
+        <p><strong>Instead:</strong></p>
+        <div class="bullets">
+          <div class="bullet"><span class="bullet-dot"></span><div>Workloads and demands increase.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Employees misuse or mistrust AI.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Validation and quality decrease.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Risk and shadow AI increase.</div></div>
+        </div>
+        <p style="margin-top:20px;"><strong>Most AI assessments and solutions focus on tools and governance.</strong><br>We help you ensure your workers use AI securely and effectively.</p>
+      </div>
+
+      <div>
+        <div class="compare">
+          <div class="compare-col card">
+            <h3>Before AI</h3>
+            <div class="bullets">
+              <div class="bullet"><span class="bullet-dot"></span><div>Known workflows</div></div>
+              <div class="bullet"><span class="bullet-dot"></span><div>Human review habits</div></div>
+              <div class="bullet"><span class="bullet-dot"></span><div>Clear ownership</div></div>
+            </div>
+          </div>
+          <div class="vs">VS</div>
+          <div class="compare-col card">
+            <h3>After AI</h3>
+            <div class="bullets">
+              <div class="bullet"><span class="bullet-dot"></span><div>Faster output, weaker judgment</div></div>
+              <div class="bullet"><span class="bullet-dot"></span><div>More pressure, less validation</div></div>
+              <div class="bullet"><span class="bullet-dot"></span><div>Shadow AI and policy gaps</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution" class="section">
+    <div class="container solution-grid">
+      <div>
+        <div class="eyebrow">The solution</div>
+        <h2>We created a new category because no one else can.</h2>
+        <h3 style="font-size:1.5rem; color:var(--primary); margin-bottom:18px;">Human Risk Intelligence for AI</h3>
+        <p>HermanScience is the only platform that measures:</p>
+        <div class="bullets">
+          <div class="bullet"><span class="bullet-dot"></span><div>Trust levels that lead to overreliance or AI misuse.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Stress levels that drive shortcuts and mistakes.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Storytelling abilities and soft skills that impact prompting and editing.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Decision-making behaviors and AI mistakes under pressure.</div></div>
+        </div>
+        <p style="margin-top:18px;"><strong>We don’t just assess AI readiness.</strong><br>We identify why AI fails and how to fix it.</p>
+      </div>
+
+      <div class="card dashboard">
+        <div class="dash-top">
+          <div class="score">
+            <div class="label">Trust score</div>
+            <div class="value">72</div>
+            <div class="risk-band"></div>
+          </div>
+          <div class="score">
+            <div class="label">Stress score</div>
+            <div class="value">41</div>
+            <div class="risk-band"></div>
+          </div>
+          <div class="score">
+            <div class="label">Prompting</div>
+            <div class="value">68</div>
+            <div class="risk-band"></div>
+          </div>
+          <div class="score">
+            <div class="label">AI Risk Index</div>
+            <div class="value">Yellow</div>
+            <div class="risk-band"></div>
+          </div>
+        </div>
+        <div class="dash-panels">
+          <div class="chart">
+            <div class="card-label">Capability profile</div>
+            <div class="radar">
+              <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" aria-label="Radar chart illustration">
+                <g stroke="#dcecf5" fill="none">
+                  <polygon points="250,40 390,110 360,260 140,260 110,110"/>
+                  <polygon points="250,85 342,132 322,230 178,230 158,132"/>
+                  <polygon points="250,128 296,152 286,201 214,201 204,152"/>
+                </g>
+                <g stroke="#c7e8f6">
+                  <line x1="250" y1="40" x2="250" y2="290"/>
+                  <line x1="110" y1="110" x2="390" y2="110"/>
+                  <line x1="140" y1="260" x2="360" y2="260"/>
+                  <line x1="110" y1="110" x2="360" y2="260"/>
+                  <line x1="390" y1="110" x2="140" y2="260"/>
+                </g>
+                <polygon points="250,70 330,138 300,220 188,232 150,132" fill="rgba(2,170,238,.20)" stroke="#02AAEE" stroke-width="3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="insights">
+            <div class="card-label">Priority insights</div>
+            <ul>
+              <li>Overtrust risk in high-speed workflows</li>
+              <li>Prompt quality inconsistent across teams</li>
+              <li>Stress spikes under deadline pressure</li>
+              <li>Leadership needs stronger AI usage norms</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section">
+    <div class="container center">
+      <div class="eyebrow">How it works</div>
+      <h2>How it works</h2>
+      <p class="lead">A fast entry point that moves from insight to action.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Take the 5-minute AI Maturity Assessment</h3>
+          <p>Instantly identify human and business AI risks and gaps.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Get your AI Workforce Risk Score</h3>
+          <p>See your Green, Yellow, Red report and where your organization is exposed.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Deep-dive assessment + action plan</h3>
+          <p>NIST and ISO aligned human and business review, behavioral analysis, and recommendations to avoid risks and improve results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container offer-grid">
+      <div>
+        <div class="eyebrow">From insight to action</div>
+        <h2>We don’t stop at insights. We help you fix the problems.</h2>
+        <div class="bullets">
+          <div class="bullet"><span class="bullet-dot"></span><div>Behavioral AI risk assessments powered by neuroscience.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>AI policy and implementation templates aligned to NIST and ISO.</div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div>Training, templates, and coaching for prompting, storytelling, and AI usage.</div></div>
+        </div>
+        <p style="margin-top:18px;">Delivered by PhDs and experts in AI, security, HR, neuroscience, and operations.</p>
+      </div>
+
+      <div class="card offer-visual">
+        <div class="offer-card">
+          <div>
+            <h3>Behavioral risk assessment</h3>
+            <p class="muted">Reveal trust, stress, and decision-risk patterns.</p>
+          </div>
+          <div class="offer-pill">Assess</div>
+        </div>
+        <div class="offer-card">
+          <div>
+            <h3>Policy + implementation templates</h3>
+            <p class="muted">Operationalize safer AI usage with aligned guidance.</p>
+          </div>
+          <div class="offer-pill">Align</div>
+        </div>
+        <div class="offer-card">
+          <div>
+            <h3>Training + coaching</h3>
+            <p class="muted">Build better prompting, editing, and judgment habits.</p>
+          </div>
+          <div class="offer-pill">Improve</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="section">
+    <div class="container center">
+      <div class="eyebrow">Measured outcomes</div>
+      <h2>Measured outcomes that matter</h2>
+      <p class="lead">A more human-centered AI rollout should produce more than policy completion. It should improve performance.</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">400%</div>
+          <div class="caption">improvement in performance</div>
+        </div>
+        <div class="stat">
+          <div class="num">74%</div>
+          <div class="caption">reduction in stress</div>
+        </div>
+        <div class="stat">
+          <div class="num">106%</div>
+          <div class="caption">increase in energy</div>
+        </div>
+        <div class="stat">
+          <div class="num">88%</div>
+          <div class="caption">increase in customer outcomes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container diff-grid">
+      <div>
+        <div class="eyebrow">Differentiation</div>
+        <h2>Why we’re different</h2>
+        <p>Most AI readiness offers stop at tools, training completion, or policy checklists. HermanScience starts where real deployment risk begins: human behavior.</p>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-box">
+          <h3>Traditional AI Assessments</h3>
+          <ul>
+            <li>Focus on tools and tech</li>
+            <li>Focus on policies</li>
+            <li>Ignore human behavior</li>
+          </ul>
+        </div>
+        <div class="compare-box highlight">
+          <h3>HermanScience</h3>
+          <ul>
+            <li>Measures human risk</li>
+            <li>Improves AI productivity</li>
+            <li>Prevents misuse and failure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="final-cta" class="section">
+    <div class="container final-cta">
+      <div class="cta-card">
+        <h2>Before you scale AI, make sure your workforce is ready.</h2>
+        <p class="lead">It only takes 5 minutes to find out.</p>
+        <div class="btns">
+          <a class="btn primary" href="#">Start Your Free AI Maturity &amp; Risk Assessment</a>
+        </div>
+        <p><strong>No cost. No commitment. Immediate human insights.</strong></p>
+      </div>
+      <div class="cta-visual">
+        <div class="shield" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="orbit"></div>
+          <div class="orbit"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">HermanScience</div>
+        <p>Neuroscience-driven assessments, training, and human risk intelligence for the AI age.</p>
+        <div class="trust-badges">
+          <span class="trust-badge">NIST aligned</span>
+          <span class="trust-badge">ISO aligned</span>
+          <span class="trust-badge">AI law aware</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">About</div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Solutions</a>
+          <a href="#">Customers</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Resources</div>
+        <div class="footer-links">
+          <a href="#">GenAI</a>
+          <a href="#">Science</a>
+          <a href="#">News</a>
+          <a href="#">Events</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Compliance</div>
+        <p class="muted">Includes space for NIST, ISO, and AI law positioning plus trust badges and policy links.</p>
+      </div>
+    </div>
+    <div class="container copyright">
+      © 2026 HermanScience mockup. Built as an HTML homepage concept using the current site’s light blue/white branding direction and updated messaging architecture.
+    </div>
+  </footer>
+</body>
+</html>
